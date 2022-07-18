@@ -1,5 +1,5 @@
 import os
-import bluetooth
+from bluetooth import *
 import art
 import subprocess
 from alive_progress import alive_bar
@@ -14,7 +14,15 @@ print("I am not responsible for any damages or misuse from this software.\nThis 
 
 def scan():
     
-    os.system("hcitool scan")
+   # os.system("hcitool scan")
+   # print("----------------\n")
+
+    nearby_devices = discover_devices(lookup_names = True)
+
+    print ("found %d devices" % len(nearby_devices))
+
+    for name, addr in nearby_devices:
+        print (" %s - %s" % (addr, name))
 
 
 def force_connect():
