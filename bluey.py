@@ -38,10 +38,11 @@ def help_menu():
     print("Commands")
     print("--------------------------")
     print("scan  ---  scans for bluetooth devices in the area")
-    print("jam  ---  jams bluetooth devices using specified interface, target, and packet size (in bytes)")
+    print("jam  ---  jams devices using specified interface, target, and packet size")
+    print("forceconnect  ---  tries to cause a buffer overflow connection on vulnerable devices")
     print("set target  --- sets target MAC address for later use")
     print("set interface  ---  sets bluetooth interface for use")
-    print("set packetsize  ---  sets packet size for use with the \"jam\" command")
+    print("set packetsize  ---  sets packet size for use with the \"jam\" command (in bytes)")
     print(" ")
 
 
@@ -82,6 +83,9 @@ while True:
     if(cmd == "set" and subcmd == "interface"):
         interface = arg
         print(interface + "---> bluetooth interface\n")
+
+    if(cmd == "forceconnect"):
+        force_connect()
 
     if(cmd == "help"):
         help_menu()
