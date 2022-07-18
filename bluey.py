@@ -12,11 +12,12 @@ print("I am not responsible for any damages or misuse from this software.\nThis 
 
 def scan():
     try:
+        
+        nearby_devices = discover_devices(lookup_names = True)
+
         print(" ")
         print("        Devices:\n")
         print("==========================")
-        nearby_devices = discover_devices(lookup_names = True)
-        
         for name, addr in nearby_devices:
             print (" > %s - %s" % (addr, name))
 
