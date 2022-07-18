@@ -7,7 +7,7 @@ import time
 
 
 art.tprint("bluey")
-print("-------------------------------------------------\n")
+print("=====================================")
 print("Author: Logan Goins\n")
 print("I am not responsible for any damages or misuse from this software.\nThis software is used at your own risk\n")
 
@@ -34,8 +34,7 @@ def jam():
     os.system("l2ping -i hci0 -s " + packetsize + " -f " + target)
     
 def help_menu():
-    print(" \n\n")
-    print("Bluey help menu:")
+    print(" \n")
     print("Commands")
     print("--------------------------")
     print("scan  ---  scans for bluetooth devices in the area")
@@ -86,4 +85,7 @@ while True:
 
     if(cmd == "help"):
         help_menu()
+
+    if(cmd == "exit" or cmd == "quit"):
+        exit()
 
