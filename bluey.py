@@ -67,6 +67,7 @@ def help_menu():
     print("set target <target>  --- sets target MAC address for later use")
     print("set interface <interface> ---  sets bluetooth interface for use")
     print("set packetsize <packet size> ---  sets packet size for use with the \"jam\" command (in bytes)")
+    print("clear  ---  clears terminal window")
     print(" ")
 
 def main():
