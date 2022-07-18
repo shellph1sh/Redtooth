@@ -1,5 +1,5 @@
 # Bluey
-Bluetooth Manipulation Software for GNU/Linux based systems
+Bluetooth Manipulation Software for GNU/Linux based operating systems systems
 
 ## General Info
 I am not responsible for any damages or misuse of this software.
