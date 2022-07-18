@@ -11,16 +11,6 @@ except ModuleNotFoundError:
   os.system("pip install -U art")
   print("Done!")
 
-try:
-  import bluetooth
-  
-except ModuleNotFoundError:
-  missingLibrary = True
-  print("Could not find a required library. Installing...")
-  os.system("git clone https://github.com/pybluez/pybluez.git")
-  os.system("sudo python3 pybluez/setup.py install")
-  os.system("sudo rm -rf pybluez")
-  print("Done!")
 
 try:
   import alive_progress
