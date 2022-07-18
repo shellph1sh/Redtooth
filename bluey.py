@@ -15,13 +15,15 @@ print("I am not responsible for any damages or misuse from this software.\nThis 
 def scan():
     
     print(" ")
-    print("       Devices:\n")
+    print("        Devices:\n")
     print("==========================")
     nearby_devices = discover_devices(lookup_names = True)
     
     for name, addr in nearby_devices:
-        print (" %s - %s" % (addr, name))
+        print (" > %s - %s" % (addr, name))
 
+    print(" \n")
+    print("==========================")
     print ("found %d devices" % len(nearby_devices))
     print(" ")
 
