@@ -5,6 +5,8 @@ Bluetooth Manipulation Software for GNU/Linux based operating systems systems
 I am not responsible for any damages or misuse of this software.
 I will assume no liability as this software is under the responsibility of the end user
 
+This software has only been tested so far on a kali-everything live image
+
 ## Installation
 currently one of the dependencies for this software, the python3 PyBluez module does not work through pip.
 so a source installation is required
