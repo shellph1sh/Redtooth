@@ -119,6 +119,9 @@ def main():
 
         if(cmd == "help"):
             help_menu()
+        
+        if(cmd == "clear"):
+            os.system("clear")
 
         if(cmd == "exit" or cmd == "quit"):
             exit()
