@@ -15,14 +15,14 @@ print("I am not responsible for any damages or misuse from this software.\nThis 
 def scan():
     
     print(" ")
-
+    print("       Devices:\n")
+    print("==========================")
     nearby_devices = discover_devices(lookup_names = True)
-
-    print ("found %d devices" % len(nearby_devices))
-
+    
     for name, addr in nearby_devices:
         print (" %s - %s" % (addr, name))
 
+    print ("found %d devices" % len(nearby_devices))
     print(" ")
 
 def force_connect():
