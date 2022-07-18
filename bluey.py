@@ -28,11 +28,11 @@ def scan():
 def force_connect():
     print("attempting connection")
     connect=['rfcomm', 'connect', target, '1']
-    for x in 1001:
-        with alive_bar(x) as bar:
-            for i in range(0, 1001):
-                subprocess.call(connect)
-                bar()
+    items = range(1001)
+    with alive_bar(len(items)) as bar:
+        for item in items:   
+            subprocess.call(connect)
+            bar()
 
 def jam():
     print("Starting packet flow")
