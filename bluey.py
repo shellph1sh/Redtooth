@@ -6,8 +6,8 @@ from alive_progress import alive_bar
 import time
 
 
-art.tprint("bluey", font="graffiti")
-print("\n\n")
+art.tprint("bluey")
+print("-------------------------------------------------\n")
 print("Author: Logan Goins\n")
 print("I am not responsible for any damages or misuse from this software.\nThis software is used at your own risk\n")
 
@@ -50,7 +50,7 @@ while True:
         print(interface + "---> bluetooth interface\n")
 
     if(cmd == "help"):
-        help()
+        help_menu()
 
 def scan():
     
@@ -74,7 +74,7 @@ def jam():
     print("Starting packet flow")
     os.system("l2ping -i hci0 -s " + packetsize + " -f " + target)
     
-def help():
+def help_menu():
     print(" \n\n")
     print("Bluey help menu:")
     print("Commands")
