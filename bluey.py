@@ -11,6 +11,41 @@ print("-------------------------------------------------\n")
 print("Author: Logan Goins\n")
 print("I am not responsible for any damages or misuse from this software.\nThis software is used at your own risk\n")
 
+def scan():
+    
+    nearby_devices = bluetooth.discover_devices(lookup_names=True)
+    print("Found {} devices.".format(len(nearby_devices)))
+
+    for addr, name in nearby_devices:
+        print("  {} - {}".format(addr, name))
+
+
+def force_connect():
+    print("attempting connection")
+    connect=['rfcomm', 'connect', target, '1']
+    for x in 1001:
+        with alive_bar(x) as bar:
+            for i in range(0, 1001):
+                subprocess.call(connect)
+                bar()
+
+def jam():
+    print("Starting packet flow")
+    os.system("l2ping -i hci0 -s " + packetsize + " -f " + target)
+    
+def help_menu():
+    print(" \n\n")
+    print("Bluey help menu:")
+    print("Commands")
+    print("--------------------------")
+    print("scan  ---  scans for bluetooth devices in the area")
+    print("jam  ---  jams bluetooth devices using specified interface, target, and packet size (in bytes)")
+    print("set target  --- sets target MAC address for later use")
+    print("set interface  ---  sets bluetooth interface for use")
+    print("set packetsize  ---  sets packet size for use with the \"jam\" command")
+    print(" ")
+
+
 while True:
     prompt = "bluey/> "
     print(prompt, end="")
@@ -52,36 +87,3 @@ while True:
     if(cmd == "help"):
         help_menu()
 
-def scan():
-    
-    nearby_devices = bluetooth.discover_devices(lookup_names=True)
-    print("Found {} devices.".format(len(nearby_devices)))
-
-    for addr, name in nearby_devices:
-        print("  {} - {}".format(addr, name))
-
-
-def force_connect():
-    print("attempting connection")
-    connect=['rfcomm', 'connect', target, '1']
-    for x in 1001:
-        with alive_bar(x) as bar:
-            for i in range(0, 1001):
-                subprocess.call(connect)
-                bar()
-
-def jam():
-    print("Starting packet flow")
-    os.system("l2ping -i hci0 -s " + packetsize + " -f " + target)
-    
-def help_menu():
-    print(" \n\n")
-    print("Bluey help menu:")
-    print("Commands")
-    print("--------------------------")
-    print("scan  ---  scans for bluetooth devices in the area")
-    print("jam  ---  jams bluetooth devices using specified interface, target, and packet size (in bytes)")
-    print("set target  --- sets target MAC address for later use")
-    print("set interface  ---  sets bluetooth interface for use")
-    print("set packetsize  ---  sets packet size for use with the \"jam\" command")
-    print(" ")
