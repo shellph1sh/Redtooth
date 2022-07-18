@@ -8,7 +8,7 @@ import time
 
 art.tprint("bluey", font="graffiti")
 print("\n\n")
-print("Author: Logan Goins")
+print("Author: Logan Goins\n")
 print("I am not responsible for any damages or misuse from this software.\nThis software is used at your own risk\n")
 
 while True:
