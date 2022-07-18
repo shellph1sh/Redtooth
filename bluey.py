@@ -5,19 +5,16 @@ import subprocess
 from alive_progress import alive_bar
 import time
 
-
 art.tprint("bluey")
 print("=====================================")
 print("Author: Logan Goins\n")
 print("I am not responsible for any damages or misuse from this software.\nThis software is used at your own risk\n")
 
+
+
 def scan():
     
-    nearby_devices = bluetooth.discover_devices(lookup_names=True)
-    print("Found {} devices.".format(len(nearby_devices)))
-
-    for addr, name in nearby_devices:
-        print("  {} - {}".format(addr, name))
+    os.system("hcitool scan")
 
 
 def force_connect():
