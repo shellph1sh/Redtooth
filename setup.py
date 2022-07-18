@@ -17,7 +17,9 @@ try:
 except ModuleNotFoundError:
   missingLibrary = True
   print("Could not find a required library. Installing...")
-  os.system("sudo pip install -U pybluez")
+  os.system("git clone https://github.com/pybluez/pybluez.git")
+  os.system("python3 pybluez/setup.py install")
+  os.system("sudo rm -rf pybluez")
   print("Done!")
 
 try:
