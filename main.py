@@ -53,7 +53,7 @@ def scan():
         main()
         
 
-def jam(threads_count, packetsize):
+def jam(target, threads_count, packetsize):
    
     print("[*] Starting DOS attack in 3 seconds...")
 

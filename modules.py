@@ -58,7 +58,7 @@ def jam_module():
             print(interface + " ---> bluetooth interface\n")
 
         if cmd == "run":
-            jam(threads_count, packetsize)
+            jam(target, threads_count, packetsize)
 
         if cmd == "exit":
             main()
