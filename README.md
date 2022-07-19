@@ -2,9 +2,8 @@
 Bluetooth DOS and manipulation software.
 
 ## General Info
-I am not responsible for any damages or misuse of this software.
-I will assume no liability as this software is under the responsibility of the end user.
-This software is meant to be for educational uses only.
+I AM NOT LIABLE FOR ANY DAMAGE OR MISUSE OF THIS SOFTWARE, AS THIS SOFTWARE IS UNDER THE RESPONSIBILITY OF THE END USER.
+THIS SOFTWARE IS MEANT FOR EDUCATIONAL PURPOSES ONLY
 
 ## Dependencies
 ### software
@@ -14,3 +13,9 @@ This software is meant to be for educational uses only.
  - pybluez
  - art
  - alive-progress
+ 
+ ## Installation
+
+ 1. Run ```sudo git clone https://github.com/Lionskey/Redtooth.git```
+ 2. Then ```cd Redtooth```
+ 3. Run the ```setup.py``` file for pip related dependencies. ```sudo python3 setup.py```
