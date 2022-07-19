@@ -11,7 +11,7 @@ global packetsize
 global interface
 global threads_count
 os.system("clear")
-art.tprint("bluey")
+art.tprint("Redtooth")
 print("=====================================")
 print("Author: Logan Goins\n")
 print("I am not responsible for any damages or misuse from this software.\nThis software is used at your own risk\n")
