@@ -1,5 +1,9 @@
 
 from main import *
+global target
+global interface
+global packetsize
+global threads_count
 
 def jam_module():
     while True:
@@ -33,7 +37,7 @@ def jam_module():
             print("exit                         ---  returns to the parent module")
 
         if cmd == "set" and subcmd == "target":
-            global target
+
             target = arg
             print(target + " ---> target\n")
 
