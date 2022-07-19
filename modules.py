@@ -1,5 +1,3 @@
-
-from main import *
 global target
 global interface
 global packetsize
