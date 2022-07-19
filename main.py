@@ -17,7 +17,7 @@ os.system("clear")
 art.tprint("Redtooth")
 print("=====================================")
 print("Author: Logan Goins\n")
-print("I am not responsible for any damages or misuse from this software.\nThis software is used at your own risk\n")
+print("I am not responsible for any damages or misuse from this software.\nThis software is used at your own risk.\n")
 
 
 def DOS(target, packetsize):
