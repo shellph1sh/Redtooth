@@ -83,9 +83,7 @@ def jam_module():
             main()
 
         if cmd == "stop":
-            for i in threads_ar:
-                i.stop()
-                i.join()
+            os.system("killall l2ping")
 
 
 def scan():
