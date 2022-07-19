@@ -10,7 +10,6 @@ import threading
 threads_ar = []
 blocked_addr = []
 global packetsize
-global interface
 global threads_count
 global target
 os.system("clear")
@@ -50,7 +49,6 @@ def jam_module():
             print("set target <target>          ---  sets target MAC address for disabling")
             print("set packetsize <packet size> ---  sets packet size for use (in bytes)")
             print("set threads <thread number>  ---  sets number of threads for attack")
-            print("set interface <interface>    ---  sets bluetooth interface to use for attack")
             print("run                          ---  starts attack")
             print("stop                         ---  stops all data flow")
             print("exit                         ---  returns to the parent module")
@@ -71,10 +69,6 @@ def jam_module():
             packetsize = arg
             print(packetsize + " ---> packet size\n")
 
-        if cmd == "set" and subcmd == "interface" :
-            
-            interface = arg
-            print(interface + " ---> bluetooth interface\n")
 
         if cmd == "run":
             jam(target, threads_count, packetsize)
