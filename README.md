@@ -1,5 +1,5 @@
 # Redtooth
-Bluetooth DOS and manipulation software.
+Bluetooth DOS (Denial of service) and manipulation software.
 
 ## General Info
 I AM NOT LIABLE FOR ANY DAMAGE OR MISUSE OF THIS SOFTWARE, AS THIS SOFTWARE IS UNDER THE RESPONSIBILITY OF THE END USER.
