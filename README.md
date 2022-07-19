@@ -23,3 +23,8 @@ THIS SOFTWARE IS MEANT FOR EDUCATIONAL PURPOSES ONLY
 ## Showcase
 
 ![Redtooth_showcase](https://user-images.githubusercontent.com/55106700/179833144-95bb61ab-2e0d-4302-982b-4596e51f598d.png)
+
+## Extra Note:
+Currently the PyBlueZ module is not under active development and have a current problem with their pip installation.
+Users have to install the pybluez python3 module from source.
+You can get the PyBlueZ python3 module at https://github.com/pybluez/pybluez
