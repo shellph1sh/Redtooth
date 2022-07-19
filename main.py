@@ -5,7 +5,9 @@ import subprocess
 from alive_progress import alive_bar
 import time
 import threading
+from modules import *
 
+threads_ar = []
 blocked_addr = []
 global packetsize
 global interface
@@ -25,8 +27,10 @@ def DOS(target, packetsize):
 
 def scan():
 
-    try:
-        
+    
+    
+    
+    try:    
         print("Scanning for devices...")
 
         nearby_devices = discover_devices(lookup_names = True)
@@ -62,28 +66,31 @@ def jam(threads_count, packetsize):
     with alive_bar(int(threads_count)) as bar:
         for i in range(0, int(threads_count)):
          
-            threading.Thread(target=DOS, args=[str(target), str(packetsize)]).start()
+            t = threading.Thread(target=DOS, args=[str(target), str(packetsize)])
+            t.start()
+            threads_ar.append(t)
             bar()
     
 
     print('[*] Built all threads...')
     print('[*] Starting...')
+
+    jam_module()
     
     
 def help_menu():
     print(" \n")
     print("Commands")
     print("--------------------------")
-    print("scan                         ---  scans for bluetooth devices in the area")
-    print("jam                          ---  jams devices using specified interface, target, and packet size")
-    print("forceconnect                 ---  tries to cause a buffer overflow connection on vulnerable devices")
-    print("set target <target>          ---  sets target MAC address for later use")
+    print("show modules                 ---  shows modules used by Redtooth")
+    print("use <module_name>            ---  selects and enters into the selected module")
+    print("show options                 ---  shows options for selected module")
     print("show blocked                 ---  shows all MAC addresses and hostnames jammed")
-    print("set interface <interface>    ---  sets bluetooth interface for use")
-    print("set packetsize <packet size> ---  sets packet size for use with the \"jam\" command (in bytes)")
-    print("set threads <thread number>  ---  sets number of threads for attack")
     print("clear                        ---  clears terminal window")
+    print("exit                         ---  exits Redtooth")
     print(" ")
+
+
 
 
 def main():
@@ -91,7 +98,7 @@ def main():
         prompt = "\nRedtooth/> "
         print(prompt, end="")
 
-        command = input().split(" ")
+        command = input().lower().split(" ")
         print(" ")
         if len(command) >= 3:
             cmd = command[0]
@@ -111,37 +118,15 @@ def main():
         if cmd == "scan":
             scan()
 
-        if cmd == "set" and subcmd == "target":
-            global target
-            target = arg
-            print(target + " ---> target\n")
 
+        if cmd == "use" and subcmd == "jam":
+            jam_module()
 
-        if cmd == "set" and subcmd == "threads":
-            
-            threads_count = arg
-            print(threads_count + " ---> threads\n")
+        if cmd == "show" and subcmd == "modules":
+            print("\nModules:\n===============================\njam   ---   bluetooth connection jammer/disabler")
+            print("scan   ---   scans surrounding area for bluetooth devices")
 
-
-        if cmd == "jam":
-            if packetsize == "" or target == "" or threads_count == "":
-                print("You need to set the packetsize, target, and threads for this command")
-            jam(threads_count, packetsize)
-
-        if cmd == "set" and subcmd == "packetsize":
-            
-            packetsize = arg
-            print(packetsize + " ---> packet size\n")
-
-        if cmd == "set" and subcmd == "interface" :
-            
-            interface = arg
-            print(interface + " ---> bluetooth interface\n")
-
-        if cmd == "forceconnect":
-            force_connect(target)
-
-        if cmd == "help":
+        if cmd == "help" or cmd == "show" and subcmd == "options":
             help_menu()
         
         if cmd == "clear":
@@ -149,6 +134,9 @@ def main():
 
         if cmd == "exit" or cmd == "quit":
             exit()
+        
+        else:
+            "Invalid command\n"
 
 
 if __name__ == "__main__":
