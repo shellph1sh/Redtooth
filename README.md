@@ -7,7 +7,7 @@ THIS SOFTWARE IS MEANT FOR EDUCATIONAL PURPOSES ONLY
 
 ## Dependencies
 ### software
-- BlueZ official Linux Bluetooth protocol stack
+- BlueZ official Linux Bluetooth protocol stack (included in most distros)
 
 ### Python
  - pybluez
