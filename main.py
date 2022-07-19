@@ -8,6 +8,7 @@ import threading
 
 
 threads_ar = []
+global blocked_addr 
 blocked_addr = []
 global packetsize
 global threads_count
@@ -79,11 +80,12 @@ def jam_module():
         if cmd == "stop":
             os.system("killall l2ping")
 
+        else:
+            print("invalid command")
+
 
 def scan():
 
-    
-    
     
     try:    
         print("Scanning for devices...")
@@ -130,6 +132,8 @@ def jam(target, threads_count, packetsize):
     print('[*] Built all threads...')
     print('[*] Starting...')
 
+    blocked_addr.append(target)
+
     jam_module()
     
     
@@ -141,6 +145,7 @@ def help_menu():
     print("use <module_name>            ---  selects and enters into the selected module")
     print("show options                 ---  shows options for selected module")
     print("show blocked                 ---  shows all MAC addresses and hostnames jammed")
+    print("scan                         ---  scans area for bluetooth devices")
     print("clear                        ---  clears terminal window")
     print("exit                         ---  exits Redtooth")
     print(" ")
@@ -179,7 +184,7 @@ def main():
 
         if cmd == "show" and subcmd == "modules":
             print("\nModules:\n===============================\njam   ---   bluetooth connection jammer/disabler")
-            print("scan   ---   scans surrounding area for bluetooth devices")
+           
 
         if cmd == "help" or cmd == "show" and subcmd == "options":
             help_menu()
@@ -190,6 +195,11 @@ def main():
         if cmd == "exit" or cmd == "quit":
             exit()
         
+        if cmd == "show" and subcmd == "blocked":
+            print("Blocked devices\n====================")
+            for e in blocked_addr:
+                print(str(e))
+
         else:
             "Invalid command\n"
 
