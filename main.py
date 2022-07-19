@@ -94,7 +94,6 @@ def help_menu():
 
 
 def main():
-    from modules import *
     while True:
         prompt = "\nRedtooth/> "
         print(prompt, end="")
