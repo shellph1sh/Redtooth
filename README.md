@@ -18,7 +18,7 @@ THIS SOFTWARE IS MEANT FOR EDUCATIONAL PURPOSES ONLY
 
  1. Run ```sudo git clone https://github.com/Lionskey/Redtooth.git```
  2. Then ```cd Redtooth```
- 3. Run the ```setup.py``` file for pip related dependencies. ```sudo python3 setup.py```
+ 3. Run the ```setup.py``` file for pip related dependencies with ```sudo python3 setup.py```
 
 ## Showcase
 
