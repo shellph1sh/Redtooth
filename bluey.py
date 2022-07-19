@@ -80,18 +80,17 @@ def passive_scan():
             for name, addr in nearby_devices:
                 print("Blocked devices:")
                 print (" > %s - %s" % (addr, name))
-                t = Thread(target=passive_prevent, args=(addr,)) 
-                
-                t.start()
-                t.join()
-                threads.append(t)
+                threads.append(Thread(target=passive_prevent, args=(addr,)))               
+                threads[-1].start()
                 blocked_addr.append(addr)
 
 
             print(" \n")
             print(" ")
-
             
+            # Wait for threads to finish
+            for thread in threads:
+                thread.join()
 
         
     except OSError as error:
