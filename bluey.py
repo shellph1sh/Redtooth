@@ -53,8 +53,8 @@ def force_connect(target):
             bar()
 
 def passive_prevent(target):
-    if item not in blocked_addr:
-        subprocess.check_output("sudo 12ping -i {interface} -s {packetsize} -f {target}}".split(" "))
+    if target not in blocked_addr:
+        subprocess.check_output("sudo l2ping -i {interface} -s {packetsize} -f {target}}".split(" "))
 
 def passive_scan():
     try:
@@ -80,11 +80,13 @@ def passive_scan():
             for name, addr in nearby_devices:
                 print("Blocked devices:")
                 print (" > %s - %s" % (addr, name))
-                t = Thread(target=passive_prevent, args=(addr)) 
+                t = Thread(target=passive_prevent, args=(addr,)) 
+                
                 t.start()
                 t.join()
+                threads.append(t)
                 blocked_addr.append(addr)
-                
+
 
             print(" \n")
             print(" ")
