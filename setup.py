@@ -24,6 +24,6 @@ except ModuleNotFoundError:
 
 if missingLibrary:
   print("Restarting to refresh content...")
-  import Redtooth
+  import main
   exit()
 
