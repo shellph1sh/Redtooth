@@ -167,6 +167,7 @@ def help_menu():
 
 
 def main():
+    readline.set_auto_history(True)
     while True:
         command = input("Redtooth/> ").lower().split(" ")
         print(" ")
