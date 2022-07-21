@@ -7,7 +7,7 @@ Bluetooth DOS (Denial of service) and manipulation software.
 
 
 <p align="center">
-   <img src="https://user-images.githubusercontent.com/55106700/180120594-393711a4-de96-411a-a261-9719e6b05fe2.gif" width="880" height="570"
+   <img src="https://user-images.githubusercontent.com/55106700/180120594-393711a4-de96-411a-a261-9719e6b05fe2.gif" width="750" height="470"
 </p>
 
 
