@@ -35,6 +35,6 @@ THIS SOFTWARE IS MEANT FOR EDUCATIONAL PURPOSES ONLY.
  After running ```sudo python3 setup.py``` Redtooth will be installed globally and can be called from the command ```redtooth```
  in your favorite terminal.
 
-## Extra Note:
+## Extra Note
 Currently the PyBlueZ library is not under active development and have a current problem with their pip installation.
 The setup.py file installs the PyBlueZ library from source.
