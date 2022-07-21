@@ -5,6 +5,7 @@ import subprocess
 from alive_progress import alive_bar
 import time
 import threading
+import readline
 
 
 
