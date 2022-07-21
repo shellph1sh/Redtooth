@@ -37,6 +37,17 @@ THIS SOFTWARE IS MEANT FOR EDUCATIONAL PURPOSES ONLY.
  
  ### For Gentoo users
  (For gentoo users, pip does not function without the user flag, so just go into ```setup.py``` and change every ```-U``` to ```--user```)
+ 
+ ## Removal
+ 
+ To uninstall redtooth just delete the binary saved under ```/usr/bin/redtooth'''
+ ```
+ sudo rm -rf /usr/bin/redtooth
+ ```
+ and delete the main library files that the binary leads to
+ ```
+ sudo rm -rf /usr/lib/Redtooth
+ ```
 
 ## Extra Note
 Currently the PyBlueZ library is not under active development and have a current problem with their pip installation.
