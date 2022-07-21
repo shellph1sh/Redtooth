@@ -40,7 +40,7 @@ THIS SOFTWARE IS MEANT FOR EDUCATIONAL PURPOSES ONLY.
  
  ## Removal
  
- To uninstall redtooth just delete the binary saved under ```/usr/bin/redtooth'''
+ To uninstall redtooth just delete the binary saved under ```/usr/bin/redtooth```
  ```
  sudo rm -rf /usr/bin/redtooth
  ```
