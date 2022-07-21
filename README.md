@@ -3,7 +3,7 @@ Bluetooth DOS (Denial of service) and manipulation software.
 
 ## Showcase 
 <p align="center">
-   <img src="https://user-images.githubusercontent.com/55106700/180107134-171fcc54-18f2-4a16-944f-9a2ae7a32bcb.png">
+   <img src="https://user-images.githubusercontent.com/55106700/180107134-171fcc54-18f2-4a16-944f-9a2ae7a32bcb.png" width="770" height="490">
 </p>
 
 
