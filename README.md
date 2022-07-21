@@ -34,6 +34,9 @@ THIS SOFTWARE IS MEANT FOR EDUCATIONAL PURPOSES ONLY.
  
  After running ```sudo python3 setup.py``` Redtooth will be installed globally and can be called from the command ```redtooth```
  in your favorite terminal.
+ 
+ ### For Gentoo users
+ (For gentoo users, pip does not function without the user flag, so just go into ```setup.py``` and change every ```-U``` to ```--user```)
 
 ## Extra Note
 Currently the PyBlueZ library is not under active development and have a current problem with their pip installation.
