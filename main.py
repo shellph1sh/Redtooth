@@ -26,7 +26,7 @@ if not os.geteuid() == 0:
 print("Type \"help\" for more information")
 print("making sure your bluetooth adapter is enabled...\n")
 try:
-    nearby_devices = discover_devices()
+    bluez.read_local_bdaddr()
 except OSError:
     print("Please enable your bluetooth adapter")
     exit()
