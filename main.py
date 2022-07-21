@@ -16,7 +16,8 @@ found_addr = []
 global packetsize
 global threads_count
 global target
-art.tprint("Redtooth")
+print("\n")
+art.tprint("Redtooth", font="fraktur")
 print("=====================================")
 print("Author: Logan Goins\n")
 if not os.geteuid() == 0:
