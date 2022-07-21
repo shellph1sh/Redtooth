@@ -33,6 +33,10 @@ except ModuleNotFoundError:
   os.sytsem("sudo rm -rf pybluez/")
   print("Done!")
 
+print("Adding Redtooth to path")
+os.system("mkdir /usr/lib/Redtooth")
+os.system("cp -r * /usr/lib/Redtooth")
+os.system("cp -r bin/redtooth /usr/bin/")
 
 if missingLibrary:
   print("Restarting to refresh content...")
