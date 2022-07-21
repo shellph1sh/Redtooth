@@ -36,5 +36,5 @@ THIS SOFTWARE IS MEANT FOR EDUCATIONAL PURPOSES ONLY.
  in your favorite terminal.
 
 ## Extra Note:
-Currently the PyBlueZ module is not under active development and have a current problem with their pip installation.
-The setup.py file installs the PyBlueZ module from source.
+Currently the PyBlueZ library is not under active development and have a current problem with their pip installation.
+The setup.py file installs the PyBlueZ library from source.
