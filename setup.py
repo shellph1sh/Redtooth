@@ -22,8 +22,22 @@ except ModuleNotFoundError:
   print("Done!")
 
 
+try:
+  from bluetooth import *
+  
+except ModuleNotFoundError:
+  missingLibrary = True
+  print("Could not find a required library. Installing...")
+  os.system("git clone https://github.com/pybluez/pybluez.git")
+  os.system("python3 pybluez/setup.py install")
+  os.sytsem("sudo rm -rf pybluez/")
+  print("Done!")
+
+
 if missingLibrary:
   print("Restarting to refresh content...")
   import main
   exit()
+
+
 
