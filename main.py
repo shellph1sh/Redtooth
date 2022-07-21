@@ -67,18 +67,18 @@ def jam_module():
         if cmd == "set" and subcmd == "target":
 
             target = arg
-            print(target + " ---> target")
+            print(target + " ---> target\n")
 
 
         if cmd == "set" and subcmd == "threads":
             
             threads_count = arg
-            print(threads_count + " ---> threads")
+            print(threads_count + " ---> threads\n")
 
         if cmd == "set" and subcmd == "packetsize":
             
             packetsize = arg
-            print(packetsize + " ---> packet size")
+            print(packetsize + " ---> packet size\n")
 
 
         if cmd == "run":
@@ -168,7 +168,7 @@ def help_menu():
 
 def main():
     while True:
-        command = input("\nRedtooth/> ").lower().split(" ")
+        command = input("Redtooth/> ").lower().split(" ")
         print(" ")
         if len(command) >= 3:
             cmd = command[0]
