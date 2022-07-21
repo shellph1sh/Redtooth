@@ -2,7 +2,8 @@
 Bluetooth DOS (Denial of service) and manipulation software.
 
 ## Showcase 
-![Redtooth_showcase](https://user-images.githubusercontent.com/55106700/179833144-95bb61ab-2e0d-4302-982b-4596e51f598d.png)
+![Screenshot from 2022-07-20 20-56-53](https://user-images.githubusercontent.com/55106700/180107134-171fcc54-18f2-4a16-944f-9a2ae7a32bcb.png)
+
 
 ## General Info
 I AM NOT LIABLE FOR ANY DAMAGE OR MISUSE OF THIS SOFTWARE, AS THIS SOFTWARE IS UNDER THE RESPONSIBILITY OF THE END USER.
