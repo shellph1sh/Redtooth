@@ -31,6 +31,9 @@ THIS SOFTWARE IS MEANT FOR EDUCATIONAL PURPOSES ONLY.
  1. Run ```sudo git clone https://github.com/Lionskey/Redtooth.git```
  2. Then ```cd Redtooth```
  3. Run the ```setup.py``` file for pip related dependencies with ```sudo python3 setup.py```
+ 
+ After running ```sudo python3 setup.py``` Redtooth will be installed globally and can be called from the command ```redtooth```
+ in your favorite terminal.
 
 ## Extra Note:
 Currently the PyBlueZ module is not under active development and have a current problem with their pip installation.
