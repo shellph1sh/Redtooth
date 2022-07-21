@@ -86,6 +86,11 @@ def jam_module():
         if cmd == "run":
             jam(target, threads_count, packetsize)
 
+        if cmd == "show" and subcmd == "blocked":
+            print("Blocked devices\n====================")
+            for e in blocked_addr:
+                print(str(e))
+
         if cmd == "exit":
             main()
 
