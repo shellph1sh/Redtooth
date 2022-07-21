@@ -39,10 +39,7 @@ def DOS(target, packetsize):
 
 def jam_module():
     while True:
-        prompt = "Redtooth/jam/> "
-        print(prompt, end="")
-
-        command = input().lower().split(" ")
+        command = input("Redtooth/jam/> ").lower().split(" ")
         print(" ")
         if len(command) >= 3:
             cmd = command[0]
@@ -171,10 +168,7 @@ def help_menu():
 
 def main():
     while True:
-        prompt = "\nRedtooth/> "
-        print(prompt, end="")
-
-        command = input().lower().split(" ")
+        command = input("\nRedtooth/> ").lower().split(" ")
         print(" ")
         if len(command) >= 3:
             cmd = command[0]
