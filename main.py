@@ -91,6 +91,7 @@ def jam_module():
             print("scan                         ---  scans area for bluetooth devices")
             print("stop                         ---  stops all data flow")
             print("clear                        ---  clears terminal window")
+            print("show title                        ---  prints title screen in current module")
             print("exit                         ---  returns to the parent module\n")
 
 
@@ -101,14 +102,29 @@ def jam_module():
 
 
         if cmd == "set" and subcmd == "threads":
-            
-            threads_count = arg
-            print(threads_count + " ---> threads\n")
+            if int(arg) > 1000:
+                print("WARNING: Setting over 1000 threads could lead to your bluetooth adapter failing")
+                warning_dialog = input("proceed? [y/N] ")
+                print("\n")
+                if warning_dialog.lower() == "y":
+                    threads_count = arg
+                    print(threads_count + " ---> threads\n")
+                if warning_dialog.lower().strip() == "":
+                    pass
+                
 
         if cmd == "set" and subcmd == "packetsize":
-            
-            packetsize = arg
-            print(packetsize + " ---> packet size\n")
+            if int(arg) > 1000:
+                print("WARNING: Setting over 600 bytes could lead to the target devices blocking your data")
+                warning_dialog = input("proceed? [y/N] ")
+                print("\n")
+                if warning_dialog.lower() == "y":
+                    packetsize = arg
+                    print(packetsize + " ---> packet size\n")
+                if warning_dialog.lower().strip() == "":
+                    pass
+                
+                
 
 
         if cmd == "run" or cmd == "jam":
@@ -124,6 +140,12 @@ def jam_module():
 
         if cmd == "scan":
             scan()
+        if cmd == "show" and subcmd == "title":
+            os.system("clear")
+            print("\n")
+            art.tprint("Redtooth", font="fraktur")
+            print("============================================")
+            print("Author: Logan Goins\n")
 
         if cmd == "exit":
             main()
@@ -170,6 +192,7 @@ def help_menu():
     print("show blocked                 ---  shows all MAC addresses and hostnames jammed")
     print("scan                         ---  scans area for bluetooth devices")
     print("clear                        ---  clears terminal window")
+    print("show title                        ---  prints title screen in current module")
     print("exit                         ---  exits Redtooth")
     print(" ")
 
@@ -213,6 +236,14 @@ def main():
         
         if cmd == "clear":
             os.system("clear")
+
+        if cmd == "show" and subcmd == "title":
+            os.system("clear")
+            print("\n")
+            art.tprint("Redtooth", font="fraktur")
+            print("============================================")
+            print("Author: Logan Goins\n")
+            print("Type \"help\" for more information")
 
         if cmd == "exit" or cmd == "quit":
             exit()
