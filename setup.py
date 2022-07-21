@@ -37,6 +37,7 @@ print("Adding Redtooth to path")
 os.system("mkdir /usr/lib/Redtooth")
 os.system("cp -r * /usr/lib/Redtooth")
 os.system("cp -r bin/redtooth /usr/bin/")
+os.system("chmod +x /usr/bin/redtooth")
 
 if missingLibrary:
   print("Restarting to refresh content...")
