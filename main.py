@@ -24,8 +24,6 @@ print("Author: Logan Goins\n")
 if not os.geteuid() == 0:
     sys.exit("\nRun as root\n")
 print("Type \"help\" for more information")
-print("I am not responsible for any damages or misuse from this software.\nThis software is used at your own risk.\n")
-print("Checking if your bluetooth adapter is enabled...")
 try:
     nearby_devices = discover_devices()
 except OSError:
@@ -60,9 +58,11 @@ def jam_module():
             print("set target <target>          ---  sets target MAC address for disabling")
             print("set packetsize <packet size> ---  sets packet size for use (in bytes)")
             print("set threads <thread number>  ---  sets number of threads for attack")
-            print("run                          ---  starts attack")
+            print("run or jam                   ---  starts attack")
             print("stop                         ---  stops all data flow")
-            print("exit                         ---  returns to the parent module")
+            print("clear                        ---  clears terminal window")
+            print("exit                         ---  returns to the parent module\n")
+
 
         if cmd == "set" and subcmd == "target":
 
@@ -81,13 +81,16 @@ def jam_module():
             print(packetsize + " ---> packet size\n")
 
 
-        if cmd == "run":
+        if cmd == "run" or cmd == "jam":
             jam(target, threads_count, packetsize)
 
         if cmd == "show" and subcmd == "blocked":
             print("Blocked devices\n====================")
             for e in blocked_addr:
                 print(str(e))
+        
+        if cmd == "clear":
+            os.system("clear")
 
         if cmd == "exit":
             main()
