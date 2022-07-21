@@ -2,12 +2,13 @@
 Bluetooth DOS (Denial of service) and manipulation software.
 
 ## Showcase 
-![Screenshot from 2022-07-20 20-56-53](https://user-images.githubusercontent.com/55106700/180107134-171fcc54-18f2-4a16-944f-9a2ae7a32bcb.png)
-
+<p align="center">
+   <img src="https://user-images.githubusercontent.com/55106700/180107134-171fcc54-18f2-4a16-944f-9a2ae7a32bcb.png">
+</p>
 
 
 <p align="center">
-   <img src="https://user-images.githubusercontent.com/55106700/180120594-393711a4-de96-411a-a261-9719e6b05fe2.gif" width="770" height="490"
+   <img src="https://user-images.githubusercontent.com/55106700/180120594-393711a4-de96-411a-a261-9719e6b05fe2.gif" width="770" height="490">
 </p>
 
 
