@@ -38,7 +38,7 @@ def DOS(target, packetsize):
 
 def jam_module():
     while True:
-        prompt = "\nRedtooth/jam/> "
+        prompt = "Redtooth/jam/> "
         print(prompt, end="")
 
         command = input().lower().split(" ")
@@ -195,10 +195,7 @@ def main():
         if cmd == "show" and subcmd == "modules":
             print("\nModules:\n===============================")
             print("jam       ---   bluetooth connection jammer/disabler")
-            print("blockall  ---   jams/disables all devices possible")
-
-        if cmd == "use" and subcmd == "blockall":
-            blockall_module()
+            
 
         if cmd == "help" or cmd == "show" and subcmd == "options":
             help_menu()
