@@ -44,7 +44,7 @@ THIS SOFTWARE IS MEANT FOR EDUCATIONAL PURPOSES ONLY.
  ```
  sudo rm -rf /usr/bin/redtooth
  ```
- and delete the main library files that the binary leads to
+ and delete the main library directory that the binary leads to under ```/usr/lib/Redtooth```
  ```
  sudo rm -rf /usr/lib/Redtooth
  ```
