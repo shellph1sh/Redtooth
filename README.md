@@ -2,14 +2,14 @@
 Bluetooth DOS (Denial of service) and manipulation software.
 
 ## Showcase 
-<p align="left">
+<p align="center">
    <img src="https://user-images.githubusercontent.com/55106700/180107134-171fcc54-18f2-4a16-944f-9a2ae7a32bcb.png" width="770" height="490">
-</p>
 
 
-<p align="left">
+
+
    <img src="https://user-images.githubusercontent.com/55106700/180120594-393711a4-de96-411a-a261-9719e6b05fe2.gif" width="770" height="490">
-</p>
+
 
 
 
@@ -53,3 +53,4 @@ THIS SOFTWARE IS MEANT FOR EDUCATIONAL PURPOSES ONLY.
 ## Extra Note
 Currently the PyBlueZ library is not under active development and have a current problem with their pip installation.
 The setup.py file installs the PyBlueZ library from source.
+</p>
