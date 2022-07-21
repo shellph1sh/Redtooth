@@ -34,5 +34,4 @@ THIS SOFTWARE IS MEANT FOR EDUCATIONAL PURPOSES ONLY.
 
 ## Extra Note:
 Currently the PyBlueZ module is not under active development and have a current problem with their pip installation.
-Users have to install the pybluez python3 module from source.
-You can get the PyBlueZ python3 module at https://github.com/pybluez/pybluez
+The setup.py file installs the PyBlueZ module from source.
