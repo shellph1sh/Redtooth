@@ -234,7 +234,7 @@ def main():
 
         if cmd == "show" and subcmd == "modules":
             print("\nModules:\n===============================")
-            print("jam       ---   bluetooth connection jammer/disabler")
+            print("jam       ---   bluetooth connection jammer/disabler\n")
             
 
         if cmd == "help" or cmd == "show" and subcmd == "options":
