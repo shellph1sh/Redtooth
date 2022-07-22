@@ -112,9 +112,12 @@ def jam_module():
                 if warning_dialog.lower().strip() == "":
                     pass
                 
+            else:
+                threads_count = arg
+                print(threads_count + " ---> threads\n")
 
         if cmd == "set" and subcmd == "packetsize":
-            if int(arg) > 1000:
+            if int(arg) > 600:
                 print("WARNING: Setting over 600 bytes could lead to the target devices blocking your data")
                 warning_dialog = input("proceed? [y/N] ")
                 print("\n")
@@ -123,6 +126,9 @@ def jam_module():
                     print(packetsize + " ---> packet size\n")
                 if warning_dialog.lower().strip() == "":
                     pass
+            else:
+                packetsize = arg
+                print(packetsize + " ---> packet size\n")
                 
                 
 
